@@ -41,7 +41,7 @@ def find_images(fromfile=None):
             if size[0] != 16 or size[1] != 16:
                 f.close()
                 continue
-                    
+
             images[filepath] = fh
         return images
 
@@ -68,7 +68,7 @@ def find_images(fromfile=None):
                 if size[0] != 16 or size[1] != 16:
                     f.close()
                     continue
-                    
+
                 #elif size[0] != 16 or size[1] != 16:
                 #    fh = fh.crop((0,0,15,15))
 
@@ -93,15 +93,15 @@ def get_chunk(cropped, all_images):
                 pixel = list(raw_pixel)
                 if len(pixel) == 4:
                     continue
-          
+
                 file_pixel_map[filename] = pixel
-    
-            tree = sp.KDTree(file_pixel_map.values()) 
-            distance, result = tree.query(input_color) 
+
+            tree = sp.KDTree(file_pixel_map.values())
+            distance, result = tree.query(input_color)
             #print distance, result
             nearest_color = file_pixel_map.keys()[result]
             new_image.append(((x,y), nearest_color))
-            
+
     return new_image
 
 #def find_groupings(
@@ -145,7 +145,7 @@ def make_2dblock_str(chunk_str):
 
     block_str.append("  }")
     block_str.append("}")
-       
+
 
     ret = []
     for i in block_str:
@@ -164,7 +164,7 @@ base_image = Image.open(BASEIMAGE)
 base_image.resize((XSIZE,YSIZE))
 
 #all_images = find_images('/home/matt/filelist.txt')
-all_images = find_images('filelists/AAAA')
+all_images = find_images('filelists/pngfiles.txt')
 #all_images = find_images('filelist.txt')
 
 for xchunk in range(0,XRATIO+1):
